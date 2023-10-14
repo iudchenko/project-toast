@@ -2,6 +2,7 @@ import React from "react";
 import { useEscapeKey } from "../../hooks/useEscapeKey";
 
 export const ToastContext = React.createContext();
+const TOAST_TIMEOUT = 2000;
 
 function ToastProvider({ children }) {
   const [toasts, setToasts] = React.useState([]);
@@ -30,6 +31,18 @@ function ToastProvider({ children }) {
   const dismissAllToasts = React.useCallback(() => {
     setToasts([]);
   }, []);
+
+  React.useEffect(() => {
+    if (toasts.length < 1) return;
+
+    const timer = setTimeout(() => {
+      dismissToast(toasts.at(0).id);
+    }, TOAST_TIMEOUT);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [toasts, dismissToast]);
 
   useEscapeKey(dismissAllToasts);
 

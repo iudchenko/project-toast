@@ -18,7 +18,19 @@ const ICONS_BY_VARIANT = {
   error: AlertOctagon,
 };
 
+// const TOAST_TIMEOUT = 2000;
+
 function Toast({ id, variant = "notice", dismissToast, children }) {
+  // React.useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     dismissToast(id);
+  //   }, TOAST_TIMEOUT);
+
+  //   return () => {
+  //     clearTimeout(timer);
+  //   };
+  // }, [dismissToast, id]);
+
   const Icon = ICONS_BY_VARIANT[variant];
   return (
     <div className={`${styles.toast} ${styles[variant]}`}>
