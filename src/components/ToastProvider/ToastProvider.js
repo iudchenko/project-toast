@@ -6,20 +6,6 @@ export const ToastContext = React.createContext();
 function ToastProvider({ children }) {
   const [toasts, setToasts] = React.useState([]);
 
-  // React.useEffect(() => {
-  //   function handleKeyDown(e) {
-  //     if (e.code === "Escape") {
-  //       setToasts([]);
-  //     }
-  //   }
-
-  //   window.addEventListener("keydown", handleKeyDown);
-
-  //   return () => {
-  //     window.removeEventListener("keydown", handleKeyDown);
-  //   };
-  // }, []);
-
   const createToast = React.useCallback(
     (message, variant) => {
       const newToast = {
@@ -41,11 +27,11 @@ function ToastProvider({ children }) {
     [toasts]
   );
 
-  const removeAllToasts = React.useCallback(() => {
+  const dismissAllToasts = React.useCallback(() => {
     setToasts([]);
   }, []);
 
-  useEscapeKey(removeAllToasts);
+  useEscapeKey(dismissAllToasts);
 
   return (
     <ToastContext.Provider
