@@ -6,7 +6,6 @@ import Footer from "../Footer";
 function App() {
   return (
     <>
-      <p>test123</p>
       <ToastPlayground />
       <Footer />
     </>
